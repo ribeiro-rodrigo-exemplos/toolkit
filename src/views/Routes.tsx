@@ -2,10 +2,10 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 // Import Pages 
-import Dashboard from '../views/pages/dashboard/Dashboard'
-import FindBuckets from '../views/pages/find/buckets/Buckets'
-import FindMachines from '../views/pages/find/machines/Machines'
-import MFA from '../views/pages/mfa/MFA'
+import Dashboard from './pages/Dashboard/'
+import FindBuckets from './pages/find/Buckets/'
+import FindMachines from './pages/find/Machines/'
+import MFA from './pages/MFA/'
 
 export default () => (
     <Switch>
