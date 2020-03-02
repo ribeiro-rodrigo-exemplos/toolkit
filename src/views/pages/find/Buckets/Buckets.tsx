@@ -64,7 +64,7 @@ export default () => (
                         <i className="fa fa-align-justify"></i> Buckets Filtrados
                     </CardHeader>
                     <CardBody>
-                        <Table responsive bordered striped hover size="sm">
+                        <Table responsive bordered striped hover size="md">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -82,6 +82,12 @@ export default () => (
                                 </tr>
                                 <tr>
                                     <td>Bucket 2</td>
+                                    <td>masteraccount</td>
+                                    <td>19/02/2019</td>
+                                    <td>Amazon Webservices</td>
+                                </tr>
+                                <tr>
+                                    <td>Bucket 3</td>
                                     <td>masteraccount</td>
                                     <td>19/02/2019</td>
                                     <td>Amazon Webservices</td>
