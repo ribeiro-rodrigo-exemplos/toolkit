@@ -8,9 +8,9 @@ import FindMachines from './pages/find/Machines/'
 import MFA from './pages/MFA/'
 
 export const appRoutes: any = {
-    "/": { name: "Home", exact: true },
+    "/": { name: "Home", exact: true, component: Dashboard },
     "/dashboard": { name: "Dashboard", component: Dashboard },
-    "/find": { name: "Pesquisa" },
+    "/find": { name: "Pesquisa", component: Dashboard },
     "/find/buckets": { name: "Buckets", component: FindBuckets },
     "/find/machines": { name: "Maquinas", component: FindMachines },
     "/mfa": { name: "MFA", component: MFA }
@@ -27,9 +27,7 @@ export default () => (
                     return <Route key={path} exact path={path} component={routeObject.component} />
                 else
                     return <Route key={path} path={path} component={routeObject.component} />
-
             })
         }
-        <Redirect to="/" from="/dashboard" />
     </Switch>
 )
