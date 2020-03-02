@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 // Import Pages 
 import Dashboard from './pages/Dashboard/'
@@ -10,7 +10,7 @@ import MFA from './pages/MFA/'
 export const appRoutes: any = {
     "/": { name: "Home", exact: true, component: Dashboard },
     "/dashboard": { name: "Dashboard", component: Dashboard },
-    "/find": { name: "Pesquisa", component: Dashboard },
+    "/find": { name: "Pesquisa", component: Dashboard, hasSubRoutes: true },
     "/find/buckets": { name: "Buckets", component: FindBuckets },
     "/find/machines": { name: "Maquinas", component: FindMachines },
     "/mfa": { name: "MFA", component: MFA }
@@ -26,7 +26,9 @@ export default () => (
                 if (routeObject.exact)
                     return <Route key={path} exact path={path} component={routeObject.component} />
                 else
-                    return <Route key={path} path={path} component={routeObject.component} />
+                    if(!routeObject.hasSubRoutes)
+                        return <Route key={path} path={path} component={routeObject.component} />
+                return null 
             })
         }
     </Switch>
