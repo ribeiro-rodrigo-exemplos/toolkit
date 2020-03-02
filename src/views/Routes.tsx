@@ -9,7 +9,7 @@ import MFA from './pages/MFA/'
 
 export default () => (
     <Switch>
-        <Route exact path="/" component={FindBuckets} />
+        <Route exact path="/" component={Dashboard} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/find/buckets" component={FindBuckets} />
         <Route path="/find/machines" component={FindMachines} />

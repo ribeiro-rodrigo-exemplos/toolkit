@@ -5,12 +5,12 @@ import classNames from 'classnames';
 import nav from './_nav';
 
 class Sidebar extends React.Component {
-    handleClick(e) {
+    handleClick(e: any) {
         e.preventDefault();
         e.target.parentElement.classList.toggle('open');
     }
 
-    activeRoute(routeName, props) {
+    activeRoute(routeName: any, props: any) {
         return props.location.pathname.indexOf(routeName) > -1
             ? 'nav-item nav-dropdown open'
             : 'nav-item nav-dropdown';
@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
         const handleClick = this.handleClick;
 
         // badge addon to NavItem
-        const badge = (badge) => {
+        const badge = (badge: any) => {
             if (badge) {
                 const classes = classNames(badge.class);
                 return (
@@ -36,7 +36,7 @@ class Sidebar extends React.Component {
         };
 
         // simple wrapper for nav-title item
-        const wrapper = (item) => {
+        const wrapper = (item: any) => {
             return item.wrapper && item.wrapper.element
                 ? React.createElement(
                     item.wrapper.element,
@@ -47,7 +47,7 @@ class Sidebar extends React.Component {
         };
 
         // nav list section title
-        const title = (title, key) => {
+        const title = (title: any, key: number) => {
             const classes = classNames('nav-title', title.class);
             return (
                 <li key={key} className={classes}>
@@ -57,13 +57,13 @@ class Sidebar extends React.Component {
         };
 
         // nav list divider
-        const divider = (divider, key) => {
+        const divider = (divider: any, key: number) => {
             const classes = classNames('divider', divider.class);
             return <li key={key} className={classes} />;
         };
 
         // nav item with nav link
-        const navItem = (item, key) => {
+        const navItem = (item: any, key: number) => {
             const classes = {
                 item: classNames(item.class),
                 link: classNames(
@@ -76,7 +76,7 @@ class Sidebar extends React.Component {
         };
 
         // nav link
-        const navLink = (item, key, classes) => {
+        const navLink = (item: any, key: any, classes: any) => {
             const url = item.url ? item.url : '';
             return (
                 <NavItem key={key} className={classes.item}>
@@ -98,7 +98,7 @@ class Sidebar extends React.Component {
         };
 
         // nav dropdown
-        const navDropdown = (item, key) => {
+        const navDropdown = (item: any, key: any) => {
             return (
                 <li key={key} className={activeRoute(item.url, props)}>
                     <a
@@ -115,7 +115,7 @@ class Sidebar extends React.Component {
         };
 
         // nav type
-        const navType = (item, idx) =>
+        const navType = (item: any, idx: any) =>
             item.title
                 ? title(item, idx)
                 : item.divider
@@ -123,11 +123,11 @@ class Sidebar extends React.Component {
                     : item.children ? navDropdown(item, idx) : navItem(item, idx);
 
         // nav list
-        const navList = (items) => {
-            return items.map((item, index) => navType(item, index));
+        const navList = (items: any) => {
+            return items.map((item: any, index: number) => navType(item, index));
         };
 
-        const isExternal = (url) => {
+        const isExternal = (url: string) => {
             const link = url ? url.substring(0, 4) : '';
             return link === 'http';
         };
