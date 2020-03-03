@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { 
-    Col, 
     Row, 
+    Col, 
     FormGroup, 
-    Label, 
-    Input 
+    Input, 
+    Label 
 } from 'reactstrap'
 
 import SelectBoxProviders from '../../../components/SelectBoxProviders'
@@ -17,18 +17,24 @@ export default () => (
         <Row>
             <Col lg="3">
                 <FormGroup>
-                    <Label htmlFor="nome">Nome</Label>
-                    <Input type="text" id="name" placeholder="Digite o nome da bucket"/> 
+                    <Label htmlFor="ip-publico">IP Público</Label>
+                    <Input type="text" id="ip-publico" placeholder="Digite o IP público da máquina"/>
+                </FormGroup>
+            </Col>
+            <Col lg="3">
+                <FormGroup>
+                    <Label htmlFor="ip-privado">IP Privado</Label>
+                    <Input type="text" id="ip-privado" placeholder="Digite o IP privado da máquina"/>
+                </FormGroup>
+            </Col>
+            <Col lg="3">
+                <FormGroup>
+                    <Label htmlFor="dns-publico">DNS Público</Label>
+                    <Input type="text" id="dns-publico" placeholder="Digite o DNS da máquina"/>
                 </FormGroup>
             </Col>
             <Col lg="3">
                 <SelectBoxProviders/> 
-            </Col>
-            <Col lg="3">
-                <FormGroup>
-                    <Label htmlFor="data-criacao">Data de Criação</Label>
-                    <Input type="date" id="data-criacao"/> 
-                </FormGroup>
             </Col>
         </Row>
         <Row>

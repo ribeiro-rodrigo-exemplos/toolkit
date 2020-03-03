@@ -1,3 +1,3 @@
-import Machines from './Machines'
+import MachinesPage from './MachinesPage'
 
-export default Machines
+export default MachinesPage

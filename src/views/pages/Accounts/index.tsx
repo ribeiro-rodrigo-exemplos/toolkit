@@ -1,3 +1,3 @@
-import Accounts from './Accounts'
+import AccountsPage from './AccountsPage'
 
-export default Accounts
+export default AccountsPage
