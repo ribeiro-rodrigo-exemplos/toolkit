@@ -47,8 +47,8 @@ export default {
             class: '',
         },
         {
-            name: 'MFA',
-            url: '/mfa',
+            name: 'Contas',
+            url: '/accounts',
             icon: 'icon-speedometer',
             badge: {
                 variant: 'info',

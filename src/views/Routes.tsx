@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard/'
 import FindBuckets from './pages/find/Buckets/'
 import FindMachines from './pages/find/Machines/'
-import MFA from './pages/MFA/'
+import Accounts from './pages/Accounts'
 
 export const appRoutes: any = {
     "/": { name: "Home", exact: true, component: Dashboard },
@@ -13,7 +13,7 @@ export const appRoutes: any = {
     "/find": { name: "Pesquisa", component: Dashboard, hasSubRoutes: true },
     "/find/buckets": { name: "Buckets", component: FindBuckets },
     "/find/machines": { name: "Maquinas", component: FindMachines },
-    "/mfa": { name: "MFA", component: MFA }
+    "/accounts": { name: "Contas", component: Accounts }
 }
 
 export default () => (
