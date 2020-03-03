@@ -1,3 +1,3 @@
-import Buckets from './Buckets'
+import BucketsPage from './BucketsPage'
 
-export default Buckets
+export default BucketsPage
