@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
 
 import {
     Col, 
@@ -9,17 +9,16 @@ import {
     CardBody
 } from 'reactstrap'
 
-import { observer } from 'mobx-react'
+import { Observer } from 'mobx-react'
 
-import AccountsViewModel from '../../../viewModels/accounts/AccountsViewModel'
+import { Store, AppContext } from '../../../store/Store'
 
-const accountsViewModel = new AccountsViewModel() 
+export default () => {
 
-export default observer(() => {
+    const context: Store = useContext(AppContext)
+    const accountsViewModel = context.provideAccountsViewModel() 
 
-    useEffect(() => {
-        accountsViewModel.listAllccounts() 
-    })
+    accountsViewModel.listAllccounts()
 
     return (
         <div className="animated fadeIn">
@@ -39,20 +38,24 @@ export default observer(() => {
                                         <th>MFA</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {
-                                        accountsViewModel
-                                                .accounts
-                                                    .map((account, index) => (
-                                                        <tr key={index}>
-                                                            <td>{ account.name }</td>
-                                                            <td>{ account.id }</td>
-                                                            <td>{ account.email }</td>
-                                                            <td>2222</td>
-                                                        </tr>
-                                                    ))
+                                <Observer>
+                                    {() => 
+                                        <tbody>
+                                            {
+                                                accountsViewModel
+                                                        .accounts
+                                                            .map((account, index) => (
+                                                                <tr key={index}>
+                                                                    <td>{ account.name }</td>
+                                                                    <td>{ account.id }</td>
+                                                                    <td>{ account.email }</td>
+                                                                    <td>2222</td>
+                                                                </tr>
+                                                            ))
+                                            }
+                                        </tbody>
                                     }
-                                </tbody>
+                                </Observer>
                             </Table>
                         </CardBody>
                     </Card>
@@ -60,4 +63,4 @@ export default observer(() => {
             </Row>
         </div>
     )
-})
+}

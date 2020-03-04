@@ -7,12 +7,10 @@ import AccountsRepository from '../../models/repositories/accountsRepository'
 export default class AccountsViewModel{
 
     @observable
-    private _accounts: account[]
-    private _accountsRepository: AccountsRepository
+    public _accounts: account[] = []
 
-    constructor(){
-        this._accounts = []
-        this._accountsRepository = new AccountsRepository() 
+    constructor(private _accountsRepository: AccountsRepository){
+        
     }
 
     get accounts(): account[]{
@@ -20,8 +18,9 @@ export default class AccountsViewModel{
     }
 
     @action
-    public async listAllccounts(): Promise<void>{
+    public async listAllccounts(): Promise<account[]>{
         this._accounts = await this._accountsRepository.listAllAccounts() 
+        return this._accounts
     }
     
 }
