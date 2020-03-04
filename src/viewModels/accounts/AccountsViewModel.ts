@@ -5,7 +5,7 @@ import { observable } from 'mobx'
 class AccountsViewModel{
 
     @observable
-    private _accounts: account[]
+    private _accounts: account[] = []
 
     get accounts(){
         return this._accounts
