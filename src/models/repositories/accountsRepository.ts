@@ -1,6 +1,6 @@
 import account from '../entities/account'
 
-class AccountsRepository{
+export default class AccountsRepository{
    
     private accounts: account[]
 
@@ -13,7 +13,8 @@ class AccountsRepository{
         ]
     }
 
-    public async listAllAccounts(): Promise<account[]>{
+    public listAllAccounts(): Promise<account[]>{
         return Promise.resolve(this.accounts)
     }
 }
+
