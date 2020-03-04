@@ -1,14 +1,12 @@
-import React, { createContext } from 'react'
-
 import AccountsRepository from '../models/repositories/accountsRepository'
 import AccountsViewModel from '../viewModels/accounts/AccountsViewModel'
 
-export type Store = {
+export type storeType = {
     provideAccountsRepository: () => AccountsRepository
     provideAccountsViewModel: () => AccountsViewModel
 }
 
-const store: Store = {
+export const storeFactory: storeType = {
      provideAccountsRepository(){
         return new AccountsRepository()
     }, 
@@ -17,15 +15,3 @@ const store: Store = {
         return new AccountsViewModel(this.provideAccountsRepository()) 
     }
 }
-
-export const AppContext = createContext(store)
-
-type AppContextType = {
-    children: React.ReactNode
-}
-
-export default ({ children }: AppContextType) => (
-    <AppContext.Provider value={store}>
-        { children }
-    </AppContext.Provider>
-)

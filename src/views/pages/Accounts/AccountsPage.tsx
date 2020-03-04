@@ -11,13 +11,13 @@ import {
 
 import { Observer } from 'mobx-react'
 
-import { Store, AppContext } from '../../../store/Store'
+import { storeType, useStore } from '../../../store/'
 
 export default () => {
 
-    const context: Store = useContext(AppContext)
+    const context: storeType = useStore()
     const accountsViewModel = context.provideAccountsViewModel() 
-
+    
     accountsViewModel.listAllccounts()
 
     return (

@@ -7,7 +7,7 @@ import AccountsRepository from '../../models/repositories/accountsRepository'
 export default class AccountsViewModel{
 
     @observable
-    public _accounts: account[] = []
+    private _accounts: account[] = []
 
     constructor(private _accountsRepository: AccountsRepository){
         
