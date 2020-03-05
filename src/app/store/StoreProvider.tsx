@@ -6,11 +6,11 @@ type AppContextType = {
     children: React.ReactNode
 }
 
-export const AppContext = createContext(storeFactory)
+export const AppContext = createContext<storeType>(storeFactory)
 
 export default ({ children }: AppContextType) => (
     <AppContext.Provider value={storeFactory}>
-        { children }
+        {children}
     </AppContext.Provider>
 )
 

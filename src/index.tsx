@@ -5,15 +5,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './scss/style.scss'
 import './scss/core/_dropdown-menu-right.scss'
 
-import StoreProvider from './store/'
-import App from './views/App'
+import StoreProvider from './app/store'
+import App from './app/views/App'
 
 ReactDOM.render(
     <StoreProvider>
         <Router>
-            <App/> 
+            <App />
         </Router>
-    </StoreProvider>, 
+    </StoreProvider>,
     document.getElementById('root')
 )
 

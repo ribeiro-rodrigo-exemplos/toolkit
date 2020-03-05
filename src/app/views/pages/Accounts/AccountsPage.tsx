@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import {
-    Col, 
-    Row, 
-    Table, 
-    Card, 
-    CardHeader, 
+    Col,
+    Row,
+    Table,
+    Card,
+    CardHeader,
     CardBody
 } from 'reactstrap'
 
@@ -16,8 +16,8 @@ import { storeType, useStore } from '../../../store/'
 export default () => {
 
     const context: storeType = useStore()
-    const accountsViewModel = context.provideAccountsViewModel() 
-    
+    const accountsViewModel = context.provideAccountsViewModel()
+
     accountsViewModel.listAllccounts()
 
     return (
@@ -39,19 +39,19 @@ export default () => {
                                     </tr>
                                 </thead>
                                 <Observer>
-                                    {() => 
+                                    {() =>
                                         <tbody>
                                             {
                                                 accountsViewModel
-                                                        .accounts
-                                                            .map((account, index) => (
-                                                                <tr key={index}>
-                                                                    <td>{ account.name }</td>
-                                                                    <td>{ account.id }</td>
-                                                                    <td>{ account.email }</td>
-                                                                    <td>2222</td>
-                                                                </tr>
-                                                            ))
+                                                    .accounts
+                                                    .map((account, index) => (
+                                                        <tr key={index}>
+                                                            <td>{account.name}</td>
+                                                            <td>{account.id}</td>
+                                                            <td>{account.email}</td>
+                                                            <td>2222</td>
+                                                        </tr>
+                                                    ))
                                             }
                                         </tbody>
                                     }
