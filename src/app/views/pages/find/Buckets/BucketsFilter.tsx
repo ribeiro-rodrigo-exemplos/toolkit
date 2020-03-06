@@ -20,10 +20,8 @@ interface BucketsFilterProps{
 
 export default ({ viewModel }: BucketsFilterProps) => {
 
-    const defaultProvider = "all"
-
     const [name, setName] = useState("")
-    const [provider, setProvider] = useState(defaultProvider)
+    const [provider, setProvider] = useState("")
 
     const onFindListener = (_: React.MouseEvent) => {
         viewModel.listBucketsByName(name)
@@ -31,7 +29,7 @@ export default ({ viewModel }: BucketsFilterProps) => {
     
     const onCleanListener = (_: React.MouseEvent) => {
         setName("")
-        setProvider(defaultProvider)
+        setProvider("")
     }
 
     return (
