@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { 
     Col, 
@@ -12,29 +12,56 @@ import SelectBoxProviders from '../../../components/SelectBoxProviders'
 import CardFilter from '../../../components/CardFilter'
 import ButtonsFilter from '../../../components/ButtonsFilter'
 
-export default () => (
-    <CardFilter>
-        <Row>
-            <Col lg="3">
-                <FormGroup>
-                    <Label htmlFor="nome">Nome</Label>
-                    <Input type="text" id="name" placeholder="Digite o nome da bucket"/> 
-                </FormGroup>
-            </Col>
-            <Col lg="3">
-                <SelectBoxProviders/> 
-            </Col>
-            <Col lg="3">
-                <FormGroup>
-                    <Label htmlFor="data-criacao">Data de Criação</Label>
-                    <Input type="date" id="data-criacao"/> 
-                </FormGroup>
-            </Col>
-        </Row>
-        <Row>
-            <Col xs="6" lg="12">
-                <ButtonsFilter/> 
-            </Col>
-        </Row>
-    </CardFilter>
-)
+import BucketsViewModel from '../../../../viewModels/buckets/bucketsViewModel'
+
+interface BucketsFilterProps{
+    viewModel: BucketsViewModel
+}
+
+export default ({ viewModel }: BucketsFilterProps) => {
+
+    const defaultProvider = "all"
+
+    const [name, setName] = useState("")
+    const [provider, setProvider] = useState(defaultProvider)
+
+    const onFindListener = (_: React.MouseEvent) => {
+        viewModel.listBucketsByName(name)
+    }
+    
+    const onCleanListener = (_: React.MouseEvent) => {
+        setName("")
+        setProvider(defaultProvider)
+    }
+
+    return (
+        <CardFilter>
+            <Row>
+                <Col lg="3">
+                    <FormGroup>
+                        <Label htmlFor="nome">Nome</Label>
+                        <Input 
+                            onChange={(e) => setName(e.target.value)} 
+                            type="text" id="name"
+                            value={name} 
+                            placeholder="Digite o nome da bucket"/> 
+                    </FormGroup>
+                </Col>
+                <Col lg="3">
+                    <SelectBoxProviders 
+                        selectListener={(e: React.ChangeEvent<HTMLInputElement>) => setProvider(e.target.value)}
+                        defaultValue={provider}
+                    /> 
+                </Col>
+            </Row>
+            <Row>
+                <Col xs="6" lg="12">
+                    <ButtonsFilter 
+                        findClickListener={onFindListener}
+                        cleanClickListener={onCleanListener}/> 
+                </Col>
+            </Row>
+        </CardFilter>
+
+    )
+}

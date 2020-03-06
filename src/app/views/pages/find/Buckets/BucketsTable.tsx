@@ -1,4 +1,5 @@
 import React from 'react'
+import { Observer } from 'mobx-react'
 
 import {
     Card, 
@@ -7,7 +8,30 @@ import {
     Table, 
 } from 'reactstrap'
 
-export default () => (
+import  BucketsViewModel  from '../../../../viewModels/buckets/bucketsViewModel'
+
+interface BucketTableProps{
+    viewModel: BucketsViewModel
+}
+
+const renderBody = (viewModel: BucketsViewModel) => (
+    <tbody>
+        {
+            viewModel.buckets.map(
+                (bucket, index) => (
+                    <tr key={index}>
+                        <td>{bucket.name}</td>
+                        <td>{bucket.owner.name}</td>
+                        <td>{bucket.createDate}</td>
+                        <td>{bucket.cloudProvider}</td>
+                    </tr>
+                )
+            )
+        }
+    </tbody>
+)
+
+export default ( {viewModel }: BucketTableProps ) => (
     <Card>
         <CardHeader>
             <i className="fa fa-align-justify"></i> Buckets Filtrados
@@ -22,26 +46,7 @@ export default () => (
                         <th>Cloud Provider</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Bucket 1</td>
-                        <td>masteraccount</td>
-                        <td>23/02/2019</td>
-                        <td>Amazon Webservices</td>
-                    </tr>
-                    <tr>
-                        <td>Bucket 2</td>
-                        <td>masteraccount</td>
-                        <td>19/02/2019</td>
-                        <td>Amazon Webservices</td>
-                    </tr>
-                    <tr>
-                        <td>Bucket 3</td>
-                        <td>masteraccount</td>
-                        <td>19/02/2019</td>
-                        <td>Amazon Webservices</td>
-                    </tr>
-                </tbody>
+                <Observer>{() => renderBody(viewModel)}</Observer>
             </Table>
         </CardBody>
     </Card>

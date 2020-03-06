@@ -9,7 +9,7 @@ export type bucket = {
     name: string
     owner: account
     createDate: string
-    cloudProvider: cloudProvider
+    cloudProvider?: cloudProvider
 }
 
 export enum cloudProvider {

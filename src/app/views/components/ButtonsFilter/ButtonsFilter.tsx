@@ -2,9 +2,15 @@ import React from 'react'
 
 import { Button } from 'reactstrap'
 
-export default () => (
+interface ButtonsFilterProps{
+    findClickListener?: (event: React.MouseEvent) => void 
+    cleanClickListener?: (event: React.MouseEvent) => void 
+
+}
+
+export default ({ findClickListener, cleanClickListener }: ButtonsFilterProps) => (
     <React.Fragment>
-        <Button color="secondary" className="float-right">Limpar</Button>
-        <Button color="primary" className="float-right horizontal-margin-right-5" >Buscar</Button>
+        <Button color="secondary" onClick={cleanClickListener} className="float-right">Limpar</Button>
+        <Button color="primary" onClick={findClickListener} className="float-right horizontal-margin-right-5" >Buscar</Button>
     </React.Fragment>
 )
