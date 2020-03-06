@@ -4,7 +4,7 @@ import { FormGroup, Input, Label } from 'reactstrap'
 import { cloudProvider } from '../../../models/entities'
 
 interface SelectBoxProvidersProps{
-    selectListener?: (event:React.ChangeEvent<HTMLInputElement>) => void 
+    selectListener: (event:React.ChangeEvent<HTMLInputElement>) => void 
     defaultValue?: string
 }
 

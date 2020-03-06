@@ -3,9 +3,8 @@ import React from 'react'
 import { Button } from 'reactstrap'
 
 interface ButtonsFilterProps{
-    findClickListener?: (event: React.MouseEvent) => void 
-    cleanClickListener?: (event: React.MouseEvent) => void 
-
+    findClickListener: (event: React.MouseEvent) => void 
+    cleanClickListener: (event: React.MouseEvent) => void 
 }
 
 export default ({ findClickListener, cleanClickListener }: ButtonsFilterProps) => (
