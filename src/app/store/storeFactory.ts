@@ -2,12 +2,16 @@ import AccountsRepository from '../models/repositories/accountsRepository'
 import AccountsViewModel from '../viewModels/accounts/AccountsViewModel'
 import BucketRepository from '../models/repositories/bucketRepository'
 import BucketViewModel from '../viewModels/buckets/bucketsViewModel'
+import MachineRepository from '../models/repositories/machineRepository'
+import MachineViewModel from '../viewModels/machine/machineViewModel'
 
 export type storeType = {
     provideAccountsRepository: () => AccountsRepository
     provideAccountsViewModel: () => AccountsViewModel
     provideBucketRepository: () => BucketRepository
     provideBucketViewModel: () => BucketViewModel
+    provideMachineRepository: () => MachineRepository
+    provideMachineViewModel: () => MachineViewModel
 }
 
 export const storeFactory: storeType = {
@@ -25,5 +29,13 @@ export const storeFactory: storeType = {
 
     provideBucketViewModel(){
         return new BucketViewModel(this.provideBucketRepository())
+    },
+
+    provideMachineRepository(){
+        return new MachineRepository() 
+    }, 
+
+    provideMachineViewModel(){
+        return new MachineViewModel(this.provideMachineRepository())
     }
 }

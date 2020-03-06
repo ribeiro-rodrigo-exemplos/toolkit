@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { 
     Row, 
@@ -12,35 +12,55 @@ import SelectBoxProviders from '../../../components/SelectBoxProviders'
 import CardFilter from '../../../components/CardFilter'
 import ButtonsFilter from '../../../components/ButtonsFilter'
 
-export default () => (
-    <CardFilter>
-        <Row>
-            <Col lg="3">
-                <FormGroup>
-                    <Label htmlFor="ip-publico">IP Público</Label>
-                    <Input type="text" id="ip-publico" placeholder="Digite o IP público da máquina"/>
-                </FormGroup>
-            </Col>
-            <Col lg="3">
-                <FormGroup>
-                    <Label htmlFor="ip-privado">IP Privado</Label>
-                    <Input type="text" id="ip-privado" placeholder="Digite o IP privado da máquina"/>
-                </FormGroup>
-            </Col>
-            <Col lg="3">
-                <FormGroup>
-                    <Label htmlFor="dns-publico">DNS Público</Label>
-                    <Input type="text" id="dns-publico" placeholder="Digite o DNS da máquina"/>
-                </FormGroup>
-            </Col>
-            <Col lg="3">
-                <SelectBoxProviders/> 
-            </Col>
-        </Row>
-        <Row>
-            <Col xs="6" lg="12">
-                <ButtonsFilter/> 
-            </Col>
-        </Row>
-    </CardFilter>
-)
+import MachineViewModel from '../../../../viewModels/machine/machineViewModel'
+
+interface MachineFilterProps{
+    viewModel: MachineViewModel
+}
+
+export default ({ viewModel }: MachineFilterProps) => {
+    const defaultProvider = "all"
+
+    const [publicIp, setPublicIp] = useState("")
+    const [provider, setProvider] = useState(defaultProvider)
+
+    const onFindListener = (_: React.MouseEvent) => {
+        viewModel.listMachines(publicIp)
+    }
+    
+    const onCleanListener = (_: React.MouseEvent) => {
+        setPublicIp("")
+        setProvider(defaultProvider)
+    }
+
+    return (
+        <CardFilter>
+            <Row>
+                <Col lg="3">
+                    <FormGroup>
+                        <Label htmlFor="publicIp">Ip Público</Label>
+                        <Input 
+                            onChange={(e) => setPublicIp(e.target.value)} 
+                            type="text" id="publicIp"
+                            value={publicIp} 
+                            placeholder="Digite o ip público"/> 
+                    </FormGroup>
+                </Col>
+                <Col lg="3">
+                    <SelectBoxProviders 
+                        selectListener={(e: React.ChangeEvent<HTMLInputElement>) => setProvider(e.target.value)}
+                        defaultValue={provider}
+                    /> 
+                </Col>
+            </Row>
+            <Row>
+                <Col xs="6" lg="12">
+                    <ButtonsFilter 
+                        findClickListener={onFindListener}
+                        cleanClickListener={onCleanListener}/> 
+                </Col>
+            </Row>
+        </CardFilter>
+    )
+
+}
