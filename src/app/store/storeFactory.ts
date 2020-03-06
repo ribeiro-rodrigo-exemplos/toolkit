@@ -11,7 +11,7 @@ export type storeType = {
     provideBucketRepository: () => BucketRepository
     provideBucketViewModel: () => BucketViewModel
     provideMachineRepository: () => MachineRepository
-    provideMachineViewModel: () => MachineViewModel
+    provideMachineViewModel:  () => MachineViewModel
 }
 
 export const storeFactory: storeType = {
