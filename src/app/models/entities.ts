@@ -17,3 +17,11 @@ export enum cloudProvider {
     GCLOUD = "Google Cloud",
     AZURE = "Azure"
 }
+
+export type machine = {
+    publicIp: string
+    privateIp: string
+    publicDns: string
+    owner: account
+    cloudProvider: string
+}
