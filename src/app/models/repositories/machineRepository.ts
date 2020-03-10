@@ -1,4 +1,5 @@
 import { machine, cloudProvider } from '../entities'
+import { trackPromise } from 'react-promise-tracker'
 
 export default class MachineRepository {
 
@@ -9,6 +10,8 @@ export default class MachineRepository {
     }
 
     public listMachines(): Promise<machine[]> {
-        return Promise.resolve(this.machines)
+        return trackPromise<machine[]>(
+            new Promise(resolve => setTimeout(() => resolve(this.machines), 5000) )
+        )
     }
 }

@@ -1,4 +1,5 @@
 import { bucket, cloudProvider } from '../entities'
+import { trackPromise } from 'react-promise-tracker'
 
 export default class BucketRepository{
 
@@ -9,6 +10,8 @@ export default class BucketRepository{
     }
 
     public findBucketByName(name: string): Promise<bucket[]>{
-        return Promise.resolve(this.buckets)
+        return trackPromise<bucket[]>(
+            new Promise(resolve => setTimeout(() => resolve(this.buckets), 4000) )
+        )
     }
 }
