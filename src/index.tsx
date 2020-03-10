@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import './scss/style.scss'
 import './scss/core/_dropdown-menu-right.scss'
+import 'react-toastify/dist/ReactToastify.css';
 
 import StoreProvider from './app/store'
 
@@ -17,6 +19,7 @@ ReactDOM.render(
                 <App /> 
             </Router>
         </OauthProtect>
+        <ToastContainer/> 
     </StoreProvider>,
     document.getElementById('root')
 )

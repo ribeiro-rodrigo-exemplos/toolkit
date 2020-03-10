@@ -10,9 +10,20 @@ import {
 } from 'reactstrap'
 
 import { Observer } from 'mobx-react'
+import { toast } from 'react-toastify'
 
 import { storeType, useStore } from '../../../store/'
 import AccountsViewModel from '../../../viewModels/accounts/AccountsViewModel'
+
+async function listAllAccounts(accountsViewModel: AccountsViewModel){
+    try{
+        await accountsViewModel.listAllccounts()
+        toast.info('Contas listadas com sucesso!!!')
+    }
+    catch(e){
+        toast.error('Erro ao listar contas'); 
+    }
+}
 
 const renderBodyTable = (accountsViewModel: AccountsViewModel) => (
     <tbody>
@@ -31,13 +42,12 @@ const renderBodyTable = (accountsViewModel: AccountsViewModel) => (
     </tbody>
 )
 
-
 export default () => {
 
     const context: storeType = useStore()
     const accountsViewModel = context.provideAccountsViewModel()
-
-    requestAnimationFrame(() => accountsViewModel.listAllccounts())
+    
+    requestAnimationFrame(() => listAllAccounts(accountsViewModel))
 
     return (
         <div className="animated fadeIn">

@@ -17,16 +17,7 @@ export default class AccountsViewModel {
 
     @action
     public async listAllccounts(): Promise<account[]> {
-
-        try{
-            this._accounts = await this._accountsRepository.listAllAccounts()
-            return this._accounts
-        }
-        catch(e){
-            console.log(e)
-            return []
-        }
-
+        this._accounts = await this._accountsRepository.listAllAccounts()
+        return this._accounts
     }
-
 }
