@@ -10,12 +10,11 @@ import StoreProvider from './app/store'
 import OauthProtect from './app/views/components/OauthProtect'
 import App from './app/views/App'
 
-
 ReactDOM.render(
     <StoreProvider>
         <OauthProtect>
             <Router>
-                <App />
+                <App /> 
             </Router>
         </OauthProtect>
     </StoreProvider>,

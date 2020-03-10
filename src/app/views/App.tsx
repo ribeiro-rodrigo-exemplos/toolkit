@@ -6,6 +6,7 @@ import AppRoutes from './Routes'
 import Header from './components/Header/'
 import Sidebar from './components/Sidebar'
 import Breadcrumb from './components/Breadcrumb'
+import Spinner from './components/Spinner'
 
 const myProps: { location: { pathname: string } } = { location: { pathname: window.location.pathname } }
 
@@ -19,6 +20,7 @@ export default () => (
                 <Container fluid={true}>
                     <AppRoutes />
                 </Container>
+                <Spinner/>
             </main>
         </div>
     </div>

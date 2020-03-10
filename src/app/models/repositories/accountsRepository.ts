@@ -1,4 +1,5 @@
 import { account } from '../entities'
+import { trackPromise } from 'react-promise-tracker'
 
 export default class AccountsRepository {
 
@@ -14,7 +15,7 @@ export default class AccountsRepository {
     }
 
     public listAllAccounts(): Promise<account[]> {
-        return Promise.resolve(this.accounts)
+        return trackPromise<account[]>(new Promise(resolve => setTimeout( () => resolve(this.accounts), 5000 )))
     }
 }
 
