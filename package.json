@@ -15,6 +15,7 @@
     "@types/reactstrap": "^8.4.2",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "fetch-intercept": "^2.3.1",
     "font-awesome": "^4.7.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",

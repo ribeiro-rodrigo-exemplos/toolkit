@@ -37,7 +37,7 @@ export default () => {
     const context: storeType = useStore()
     const accountsViewModel = context.provideAccountsViewModel()
 
-    accountsViewModel.listAllccounts()
+    requestAnimationFrame(() => accountsViewModel.listAllccounts())
 
     return (
         <div className="animated fadeIn">

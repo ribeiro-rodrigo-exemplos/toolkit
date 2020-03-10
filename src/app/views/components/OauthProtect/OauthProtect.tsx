@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import fetchIntercept from 'fetch-intercept'
 
 import { tokenResponse, OauthProtectProps } from './types'
+
+const tokenKey = 'token'
 
 function redirect(): void{
     
@@ -16,7 +19,7 @@ function renderAccessDenied(): React.ReactNode{
 }
 
 function isNotAuthenticated(): boolean{
-    return localStorage.getItem('token') ? false : true 
+    return localStorage.getItem(tokenKey) ? false : true 
 }
 
 async function requestToken(code: string): Promise<tokenResponse | null>{
@@ -38,6 +41,37 @@ function getCode(): string | null {
     return code 
 }
 
+function registerRequestInterceptToken(): void {
+    fetchIntercept.register({
+        request: function(url: string ,config: any){
+            console.log('requisicao interceptada')
+
+            const token = localStorage.getItem(tokenKey)
+
+            if(!token)
+                redirect() 
+            
+            if (!config)
+                config = {} 
+
+            let headers = config.headers || {}
+
+            config.headers = Object.assign(headers,{
+                "Authorization": `Bearer ${token}`
+            })
+
+            return [url, config]
+        }, 
+        response: function(response: Response){
+
+            if(response.status === 401 || response.status === 403)
+                redirect()
+
+            return response
+        }
+    })
+}
+
 async function validate(setAuth: React.Dispatch<React.SetStateAction<boolean>>){
 
     if(isNotAuthenticated()){
@@ -46,7 +80,7 @@ async function validate(setAuth: React.Dispatch<React.SetStateAction<boolean>>){
         if(code){
             const response = await requestToken(code)
             if(response){
-                localStorage.setItem('token',response.token)
+                localStorage.setItem(tokenKey,response.token)
                 setAuth(true) 
             }
         }else
@@ -61,6 +95,8 @@ export default ({ children }: OauthProtectProps) => {
     
     if(!authenticated)
         validate(setAuth) 
+    else
+        registerRequestInterceptToken() 
 
     return (
         <React.Fragment>
