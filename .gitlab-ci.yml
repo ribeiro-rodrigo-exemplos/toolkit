@@ -15,8 +15,11 @@ build app:
 
 deploy tsuru:
   stage: deploy
+  only:
+    - master 
   image: docker-hub.artifactory.globoi.com/tsuru/client:latest
   dependencies:
     - "build app"
   script:
-    - tsuru app-list
+    - cd build/ 
+    - tsuru app-deploy -a cloud-toolkit .
