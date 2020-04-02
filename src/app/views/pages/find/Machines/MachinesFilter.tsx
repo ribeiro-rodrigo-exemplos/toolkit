@@ -8,6 +8,8 @@ import {
     Label 
 } from 'reactstrap'
 
+import { toast } from 'react-toastify'
+
 import SelectBoxProviders from '../../../components/SelectBoxProviders'
 import CardFilter from '../../../components/CardFilter'
 import ButtonsFilter from '../../../components/ButtonsFilter'
@@ -24,8 +26,16 @@ export default ({ viewModel }: MachineFilterProps) => {
     const [publicIp, setPublicIp] = useState("")
     const [provider, setProvider] = useState(defaultProvider)
 
-    const onFindListener = (_: React.MouseEvent) => {
-        viewModel.listMachines(publicIp)
+    const onFindListener = async (_: React.MouseEvent) => {
+        try{
+            const found = await viewModel.listMachines(publicIp)
+            if(found)
+                toast.info("Máquina encontrada!!!")
+            else
+                toast.warn("Máquina não encontrada")
+        }catch(e){
+            toast.error("Erro ao buscar a máquina.")
+        } 
     }
     
     const onCleanListener = (_: React.MouseEvent) => {

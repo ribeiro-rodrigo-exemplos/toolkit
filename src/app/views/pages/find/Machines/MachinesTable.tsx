@@ -21,9 +21,10 @@ const renderBody = (viewModel: MachineViewModel) => (
                 (machine, index) => (
                     <tr key={index}>
                         <td>{machine.publicIp}</td>
-                        <td>{machine.privateIp}</td>
+                        <td>{machine.instanceType}</td>
                         <td>{machine.publicDns}</td>
                         <td>{machine.owner.name}</td>
+                        <td>{machine.vpcId}</td>
                         <td>{machine.cloudProvider}</td>
                     </tr>
                 )
@@ -42,9 +43,10 @@ export default ( {viewModel}: MachineTableProps ) => (
             <thead>
                 <tr>
                     <th>Ip Público</th>
-                    <th>Ip Privado</th>
+                    <th>Tipo de Máquina</th>
                     <th>Dns Público</th>
                     <th>Dono</th>
+                    <th>VPC ID</th>
                     <th>Cloud Provider</th>
                 </tr>
             </thead>

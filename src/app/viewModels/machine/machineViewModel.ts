@@ -15,7 +15,8 @@ export default class MachineViewModel {
     }
 
     @action
-    public async listMachines(name: string): Promise<void> {
-        this._machines = await this._machineRepository.listMachines() 
+    public async listMachines(ipAddress: string): Promise<boolean> {
+        this._machines = await this._machineRepository.listMachines(ipAddress)
+        return this._machines.length > 0 
     }
 }

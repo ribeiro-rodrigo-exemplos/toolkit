@@ -15,8 +15,8 @@ export default class BucketsViewModel{
     }
 
     @action
-    public async listBucketsByName(name: string): Promise<void> {
+    public async listBucketsByName(name: string): Promise<boolean> {
         this._buckets = await this._bucketRepository.findBucketByName(name) 
+        return this._buckets.length > 0
     }
-
 }

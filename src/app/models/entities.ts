@@ -8,7 +8,6 @@ export type account = {
 export type bucket = {
     name: string
     owner: account
-    createDate: string
     cloudProvider?: cloudProvider
 }
 
@@ -19,8 +18,10 @@ export enum cloudProvider {
 }
 
 export type machine = {
+    instanceId: string 
+    instanceType: string 
+    vpcId: string 
     publicIp: string
-    privateIp: string
     publicDns: string
     owner: account
     cloudProvider: string

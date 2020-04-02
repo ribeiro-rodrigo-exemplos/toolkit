@@ -1,17 +1,21 @@
-import { machine, cloudProvider } from '../entities'
+import { machine } from '../entities'
 import { trackPromise } from 'react-promise-tracker'
 
 export default class MachineRepository {
 
-    private machines: machine[]
+    private apiURL: string 
 
-    constructor() {
-        this.machines =  [{ publicIp: "192.0.0.1", privateIp:"10.0.0.1", publicDns:"abc.globoi.com", owner: {id:"12",name:"masteraccount",email:"conta@email.com"}, cloudProvider: cloudProvider.AMAZON } ]
+    constructor(){
+        this.apiURL = `${process.env.REACT_APP_AWS_API_URL as string}/v1/ec2/` 
     }
 
-    public listMachines(): Promise<machine[]> {
-        return trackPromise<machine[]>(
-            new Promise(resolve => setTimeout(() => resolve(this.machines), 5000) )
+    public async listMachines(ipAdress: string): Promise<machine[]> {
+
+        const machines = await trackPromise<machine[]>(
+            fetch(`${this.apiURL}?ip-address=${ipAdress}`)
+            .then(response => response.status === 200 ? response.json() : [])
         )
+
+        return machines
     }
 }

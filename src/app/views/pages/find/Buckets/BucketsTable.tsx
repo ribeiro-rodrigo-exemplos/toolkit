@@ -22,7 +22,7 @@ const renderBody = (viewModel: BucketsViewModel) => (
                     <tr key={index}>
                         <td>{bucket.name}</td>
                         <td>{bucket.owner.name}</td>
-                        <td>{bucket.createDate}</td>
+                        <td>{bucket.owner.email}</td>
                         <td>{bucket.cloudProvider}</td>
                     </tr>
                 )
@@ -42,7 +42,7 @@ export default ( {viewModel }: BucketTableProps ) => (
                     <tr>
                         <th>Nome</th>
                         <th>Dono</th>
-                        <th>Data de Criação</th>
+                        <th>Email Dono</th>
                         <th>Cloud Provider</th>
                     </tr>
                 </thead>

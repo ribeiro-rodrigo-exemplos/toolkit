@@ -1,17 +1,23 @@
-import { bucket, cloudProvider } from '../entities'
+import { bucket } from '../entities'
 import { trackPromise } from 'react-promise-tracker'
 
 export default class BucketRepository{
 
-    private buckets: bucket[]
+    private apiURL: string 
 
     constructor(){
-        this.buckets = [{ name: "bucket1", owner: {id:"12",name:"masteraccount",email:"conta@email.com"}, createDate:"12/03/2020", cloudProvider: cloudProvider.AMAZON } ]       
+        this.apiURL = `${process.env.REACT_APP_AWS_API_URL as string}/v1/buckets` 
     }
 
-    public findBucketByName(name: string): Promise<bucket[]>{
-        return trackPromise<bucket[]>(
-            new Promise(resolve => setTimeout(() => resolve(this.buckets), 4000) )
+    public async findBucketByName(name: string): Promise<bucket[]>{
+
+        const buckets = await trackPromise<bucket[]>(
+            fetch(`${this.apiURL}/${name}`)
+            .then(response => response.json())
+            .then(bucket => bucket ? [bucket] : [])
         )
+
+        return buckets
+        
     }
 }

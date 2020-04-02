@@ -8,6 +8,8 @@ import {
     Input 
 } from 'reactstrap'
 
+import { toast } from 'react-toastify'
+
 import SelectBoxProviders from '../../../components/SelectBoxProviders'
 import CardFilter from '../../../components/CardFilter'
 import ButtonsFilter from '../../../components/ButtonsFilter'
@@ -23,8 +25,17 @@ export default ({ viewModel }: BucketsFilterProps) => {
     const [name, setName] = useState("")
     const [provider, setProvider] = useState("")
 
-    const onFindListener = (_: React.MouseEvent) => {
-        viewModel.listBucketsByName(name)
+    const onFindListener = async (_: React.MouseEvent) => {
+        try{
+            const found = await viewModel.listBucketsByName(name)
+            if(found)
+                toast.info("Bucket encontrado!!!")
+            else
+                toast.warn("Bucket não encontrado.")
+        }
+        catch(e){
+            toast.error("Erro ao buscar bucket.")
+        }
     }
     
     const onCleanListener = (_: React.MouseEvent) => {
