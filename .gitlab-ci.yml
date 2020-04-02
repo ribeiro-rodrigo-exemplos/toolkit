@@ -1,0 +1,20 @@
+stages:
+  - build
+  - deploy 
+
+build app:
+  image: "node:12.14.0"
+  artifacts:
+    expire_in: 2h20min
+    paths:
+      - build/
+  script:
+    - yarn install 
+    - yarn build 
+
+deploy tsuru:
+  image: docker-hub.artifactory.globoi.com/tsuru/client:latest
+  dependencies:
+    - "build app"
+  script:
+    - tsuru app-list
